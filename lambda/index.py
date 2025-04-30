@@ -44,7 +44,14 @@ def lambda_handler(event, context):
         
         print("Processing message:", message)
         print("Using model:", MODEL_ID)
-        
+
+        # Check for empty input message
+        if not message.strip():
+        raise Exception("Empty message received from user.")
+
+        # Print the number of tokens in the message (for debugging/limits)
+        print(f"Message length (chars): {len(message)}")
+
         # 会話履歴を使用
         messages = conversation_history.copy()
         
